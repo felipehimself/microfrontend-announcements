@@ -27,9 +27,8 @@ export const AppLayout: React.FC<PropsWithChildren> = React.memo(
         <link rel="manifest" href="dashboard/site.webmanifest" />
         <link rel="stylesheet" href="src/global.css" />
       </Helmet> */}
-        <div>
-          <main style={{ flexGrow: 1, padding: 1 }}>{children}</main>
-        </div>
+
+        <main>{children}</main>
       </>
     );
   }

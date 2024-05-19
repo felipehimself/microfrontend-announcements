@@ -1,3 +1,14 @@
+import { usePageStyles } from '@/styles';
+
 export const Announcements = () => {
-  return <div>Announcements</div>;
+  const styles = usePageStyles();
+
+  return (
+    <div className={styles.div}>
+      <p className={styles.text}>
+        This is the Announcements single page within the microfrontend
+        Announcements
+      </p>
+    </div>
+  );
 };
