@@ -5,19 +5,20 @@ import { FallbackError } from '@/components/shared/fallback-error';
 import { BrowserRouter } from 'react-router-dom';
 import { darkTheme, lightTheme } from '@mfe-lib/styleguide';
 import { FluentProvider } from '@fluentui/react-components';
+import { TTheme, TCustomEvent } from '@/types';
 
 export const AppProvider = ({ children }: React.PropsWithChildren) => {
-  const [currentTheme, setCurrentTheme] = useState<'light' | 'dark'>('light');
+  const [currentTheme, setCurrentTheme] = useState<TTheme>('light');
 
   useEffect(() => {
-    const theme = localStorage.getItem('mfe-theme') as 'light' | 'dark';
+    const theme = localStorage.getItem('mfe-theme') as TTheme;
 
     if (theme) {
       setCurrentTheme(theme);
     }
 
     window.addEventListener('mfe-theme', (event) => {
-      const customEvent = event as CustomEvent<{ theme: 'light' | 'dark' }>;
+      const customEvent = event as CustomEvent<TCustomEvent>;
 
       setCurrentTheme(customEvent.detail.theme);
     });
