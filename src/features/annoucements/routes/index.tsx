@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import { Announcements } from './announcments';
+import { Announcements } from './announcements';
 
 export const AnnouncementsRoutes = () => {
   return (
