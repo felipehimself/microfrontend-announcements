@@ -7,7 +7,7 @@ export const Announcements = () => {
     <div className={styles.div}>
       <p className={styles.text}>
         This is the Announcements single page within the microfrontend
-        Announcements
+        Announcements {''}
       </p>
     </div>
   );
