@@ -5,6 +5,18 @@ import { defineConfig } from 'vite';
 import viteTsConfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig(({ mode }) => {
+  console.log('running vite in mode: ', mode);
+
+  const isDev = mode === 'development';
+
+  const hotModuleReplacementConfig = {
+    watch: {
+      chokidar: {
+        usePolling: mode === 'development',
+      },
+    },
+  };
+
   return {
     cacheDir: './node_modules/.vite/microfrontend-announcements',
 
@@ -26,27 +38,17 @@ export default defineConfig(({ mode }) => {
       }),
     ],
 
-    // Uncomment this if you are using workers.
-    // worker: {
-    //  plugins: [ nxViteTsPaths() ],
-    // },
-
     build: {
       outDir: './dist',
       emptyOutDir: true,
-      watch: {
-        chokidar: {
-          usePolling: mode === 'development',
-        },
+      ...(isDev && hotModuleReplacementConfig),
+      reportCompressedSize: true,
+      commonjsOptions: {
+        transformMixedEsModules: true,
       },
-      // reportCompressedSize: true,
-      // commonjsOptions: {
-      //   transformMixedEsModules: true,
-      // },
       sourcemap: true,
       rollupOptions: {
         input: 'src/microfrontend-announcements.tsx',
-
         preserveEntrySignatures: 'strict',
         output: [
           {
